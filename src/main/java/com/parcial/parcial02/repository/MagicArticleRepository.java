@@ -17,4 +17,6 @@ public interface MagicArticleRepository extends JpaRepository<MagicArticle, UUID
 
     List<MagicArticle> findByType(MagicType type);
     List<MagicArticle> findByPriceLessThanEqual(BigDecimal price);
+
+    List<MagicArticle> findByTypeAndProviderId(MagicType type, UUID id);
 }

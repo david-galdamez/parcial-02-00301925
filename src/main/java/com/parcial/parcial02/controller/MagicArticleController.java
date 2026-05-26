@@ -40,7 +40,7 @@ public class MagicArticleController {
             @RequestParam(required = false) BigDecimal maxPrice,
             HttpServletRequest request
     ) {
-        var providers = articleService.getAllArticles();
+        var providers = articleService.getAllArticles(provider, category, maxPrice);
 
         return ResponseEntity.ok(ApiResponse.ok(providers, "Proveedores obtenidos correctamente", request.getRequestURI()));
     }

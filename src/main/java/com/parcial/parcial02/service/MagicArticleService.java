@@ -7,12 +7,15 @@ import com.parcial.parcial02.dto.CreateArticleDto;
 import com.parcial.parcial02.exception.BusinessRuleException;
 import com.parcial.parcial02.exception.DuplicatedName;
 import com.parcial.parcial02.exception.EntityNotFoundException;
+import com.parcial.parcial02.model.MagicArticle;
+import com.parcial.parcial02.model.enums.MagicType;
 import com.parcial.parcial02.repository.MagicArticleRepository;
 import com.parcial.parcial02.repository.MagicProviderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +25,22 @@ public class MagicArticleService {
     private MagicArticleRepository articleRepository;
     private MagicProviderRepository magicProviderRepository;
 
-    public List<ArticleDto> getAllArticles() {
+    public List<ArticleDto> getAllArticles(UUID provider, MagicType category, BigDecimal maxPrice) {
+        List<MagicArticle> articles = new ArrayList<>();
+
+        if(provider != null && category != null) {
+            articles = articleRepository.findByTypeAndProviderId(category, provider);
+        } else if(provider != null) {
+            articles = articleRepository.findByProviderId(provider);
+        } else if(category != null) {
+            articles = articleRepository.findByType(category);
+        } else if(maxPrice != null) {
+            articles = articleRepository.findByPriceLessThanEqual(maxPrice);
+        }
+
+        return articles.stream()
+                .map(ArticleMapper::toDto)
+                .toList();
     }
 
     public ArticleDetailsDto getById(UUID id) {
