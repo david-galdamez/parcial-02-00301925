@@ -22,8 +22,8 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class MagicArticleService {
-    private MagicArticleRepository articleRepository;
-    private MagicProviderRepository magicProviderRepository;
+    private final MagicArticleRepository articleRepository;
+    private final MagicProviderRepository magicProviderRepository;
 
     public List<ArticleDto> getAllArticles(UUID provider, MagicType category, BigDecimal maxPrice) {
         List<MagicArticle> articles = new ArrayList<>();

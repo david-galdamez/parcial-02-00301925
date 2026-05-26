@@ -16,8 +16,8 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class MagicProviderService {
-    private MagicProviderRepository providerRepository;
-    private MagicArticleRepository articleRepository;
+    private final MagicProviderRepository providerRepository;
+    private final MagicArticleRepository articleRepository;
 
     public ProviderDto createProvider(CreateProviderDto request) {
         var newProvider = ProviderMapper.toEntity(request);

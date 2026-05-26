@@ -19,7 +19,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class MagicProviderController {
 
-    private MagicProviderService providerService;
+    private final MagicProviderService providerService;
 
     @PostMapping
     public ResponseEntity<ApiResponse<ProviderDto>> register(

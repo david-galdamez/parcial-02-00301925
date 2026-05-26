@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequestMapping(value = "/api/articles")
 @RequiredArgsConstructor
 public class MagicArticleController {
-    private MagicArticleService articleService;
+    private final MagicArticleService articleService;
 
     @PostMapping
     public ResponseEntity<ApiResponse<ArticleDto>> register(
