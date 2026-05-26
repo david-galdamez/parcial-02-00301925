@@ -83,11 +83,6 @@ public class MagicArticleService {
         var article = articleRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Articulo no encontrado"));
 
-        var exists = articleRepository.findByNameLike(request.name());
-        if(exists.isPresent()) {
-            throw new DuplicatedName("El articulo ya esta registrado");
-        }
-
         if(!provider.getType().equals(request.type())) {
             throw new BusinessRuleException("El tipo del articulo es diferente al del proveedor");
         }
