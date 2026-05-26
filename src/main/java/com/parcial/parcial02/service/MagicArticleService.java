@@ -36,6 +36,8 @@ public class MagicArticleService {
             articles = articleRepository.findByType(category);
         } else if(maxPrice != null) {
             articles = articleRepository.findByPriceLessThanEqual(maxPrice);
+        } else {
+            articles = articleRepository.findAll();
         }
 
         return articles.stream()
