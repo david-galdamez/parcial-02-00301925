@@ -30,7 +30,7 @@ public class MagicArticleController {
     ) {
         var provider = articleService.createArticle(newArticle);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.ok(provider, "Proveedor registrado correctamente", request.getRequestURI()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.ok(provider, "Articulo registrado correctamente", request.getRequestURI()));
     }
 
     @GetMapping
@@ -42,7 +42,7 @@ public class MagicArticleController {
     ) {
         var providers = articleService.getAllArticles(provider, category, maxPrice);
 
-        return ResponseEntity.ok(ApiResponse.ok(providers, "Proveedores obtenidos correctamente", request.getRequestURI()));
+        return ResponseEntity.ok(ApiResponse.ok(providers, "Articulo obtenidos correctamente", request.getRequestURI()));
     }
 
     @GetMapping("/{id}")
@@ -52,7 +52,7 @@ public class MagicArticleController {
     ) {
         var provider = articleService.getById(id);
 
-        return ResponseEntity.ok(ApiResponse.ok(provider, "Proveedor obtenido correctamente", request.getRequestURI()));
+        return ResponseEntity.ok(ApiResponse.ok(provider, "Articulo obtenido correctamente", request.getRequestURI()));
     }
 
     @PutMapping("/{id}")
@@ -63,7 +63,7 @@ public class MagicArticleController {
     ) {
         var provider = articleService.updateArticle(updateArticle, id);
 
-        return ResponseEntity.ok(ApiResponse.ok(provider, "Proveedor actualizado correctamente", request.getRequestURI()));
+        return ResponseEntity.ok(ApiResponse.ok(provider, "Articulo actualizado correctamente", request.getRequestURI()));
     }
 
     @DeleteMapping("/{id}")
@@ -73,6 +73,6 @@ public class MagicArticleController {
     ) {
         articleService.deleteArticle(id);
 
-        return ResponseEntity.ok(ApiResponse.ok(null, "Proveedor eliminado correctamente", request.getRequestURI()));
+        return ResponseEntity.ok(ApiResponse.ok(null, "Articulo eliminado correctamente", request.getRequestURI()));
     }
 }
