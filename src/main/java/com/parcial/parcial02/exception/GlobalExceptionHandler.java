@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BusinessRuleException.class)
-    public ResponseEntity<Map<String, Object>> handleBusinessRule(EntityNotFoundException ex) {
+    public ResponseEntity<Map<String, Object>> handleBusinessRule(BusinessRuleException ex) {
         return buildResponse(HttpStatus.UNPROCESSABLE_ENTITY, "Business rule violation", ex.getMessage());
     }
 
