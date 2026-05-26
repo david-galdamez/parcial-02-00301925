@@ -19,6 +19,16 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, "Not found", ex.getMessage());
     }
 
+    @ExceptionHandler(DuplicatedName.class)
+    public ResponseEntity<Map<String, Object>> handleDuplicated(DuplicatedName ex) {
+        return buildResponse(HttpStatus.CONFLICT, "Duplicated name", ex.getMessage());
+    }
+
+    @ExceptionHandler(BusinessRuleException.class)
+    public ResponseEntity<Map<String, Object>> handleBusinessRule(EntityNotFoundException ex) {
+        return buildResponse(HttpStatus.UNPROCESSABLE_ENTITY, "Business rule violation", ex.getMessage());
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidationErrors(MethodArgumentNotValidException ex) {
         List<String> errors = ex.getBindingResult()
